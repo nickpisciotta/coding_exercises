@@ -1,10 +1,9 @@
 class Node
-attr_reader :node, :data
+attr_reader :next_node, :data
 
   def initialize(data, node)
     @data = data
-    @node = node
-    @counter = 0
+    @next_node = node
   end
 end
 
@@ -19,13 +18,17 @@ end
   n8 = Node.new("Black", n7)
   n9 = Node.new("White", n8)
 
-  head = n9
+
+  head = n8
   fastPointer = head
   slowPointer = head
+  counter = 1
 
-  while (fastPointer.node != nil && fastPointer.node.node != nil)
-    fastPointer = fastPointer.node.node
-    slowPointer = slowPointer.node
+  while (fastPointer.next_node != nil && fastPointer.next_node.next_node != nil)
+    fastPointer = fastPointer.next_node.next_node
+    slowPointer = slowPointer.next_node
+    counter += 1
   end
 
   puts slowPointer.data
+  puts counter
